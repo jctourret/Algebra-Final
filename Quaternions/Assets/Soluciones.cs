@@ -29,11 +29,12 @@ public class Soluciones : MonoBehaviour
     public Transform ejer3_4;
     public Vector3 ejer3RotationPoint = new Vector3(5f,5f,0.0f);
     public Vector3 ejer3RotationAxis;
-    public float rotationOpen = 2f;
+    public float rotationOpen;
 
     // Start is called before the first frame update
     void Start()
     {
+        rotationOpen = Vec3.Distance(new Vec3(ejer3RotationPoint), new Vec3(transform.right*10f));
         ejer3RotationAxis = ejer3RotationPoint.normalized;
         VectorDebugger.EnableCoordinates();
         VectorDebugger.AddVector(ejer1.position,Color.red,"Rojo");

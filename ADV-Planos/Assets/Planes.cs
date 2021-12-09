@@ -39,11 +39,12 @@ namespace plane
         }
         public static Plane Translate(Plane plane, Vec3 translation)
         {
-            throw new NotImplementedException();
+            Vec3 aux = new Vec3(-(plane.normal * plane.distance + translation));
+            return new Plane(plane.normal, aux);
         }
         public Vec3 ClosestPointOnPlane(Vec3 point)
         {
-            throw new NotImplementedException();
+            return (point - normal * GetDistanceToPoint(point));
             //A*(At+x)+A*(At+x)+A*(At+z) = Distance;
         }
         public void Flip()
@@ -99,7 +100,7 @@ namespace plane
         }
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return "(normal:(" + normal.x + ", " + normal.y + ", " + normal.z + "), distance:" + distance + ")";
         }
         public string ToString(string format)
         {
@@ -107,7 +108,8 @@ namespace plane
         }
         public void Translate(Vec3 translation)
         {
-            throw new NotImplementedException();
+            Vec3 aux = (normal * distance + translation);
+            distance = Vec3.Dot(normal, aux);
         }
     }
 }
